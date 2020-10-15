@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const db = require('./index.js');
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+// const mongoose = require('mongoose');
 const faker = require('faker');
-
+const db = require('./index.js');
 
 const myWordList = [
   'Tristan Lobster Tails', 'Seared Pork Belly', 'Ahi Tuna Tartare',

@@ -131,7 +131,3 @@ const PhotoContainer = ({ photos, handleClick }) => {
         </PhotoNine>
       </InnerGrid>
     </PhotoGrid>
-  );
-};
-
-export default PhotoContainer;

@@ -120,7 +120,9 @@ const MorePhotosText = styled.div`
   }
 `;
 
-const PhotoContainer = ({ photos, handleClick, morePhotos, sliderPhoto }) => {
+const PhotoContainer = ({
+  photos, handleClick, morePhotos,
+}) => {
   if (photos.length >= 9) {
     return (
       <PhotoGrid>

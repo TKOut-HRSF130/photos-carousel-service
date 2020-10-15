@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable arrow-body-style */
@@ -6,6 +7,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import PhotoSlider from './PhotoSlider.jsx';
 
 // const GalleryOverlay = styled.div`
 //   position: fixed;
@@ -172,6 +174,19 @@ const PhotoModal = ({ toggleModal, photos }) => {
       }}
     >
       <div ref={node} onClick={handleOutsideClick}>
+        <PhotoSlider photos={photos}>
+          <DescriptionFooter>
+            <div>
+              <FooterText>{`${photos[3].description}`}</FooterText>
+              <FooterText>
+                {`Dined On ${dateChange(photos[3].date)}`}
+              </FooterText>
+            </div>
+          </DescriptionFooter>
+        </PhotoSlider>
+        <CloseButton onClick={toggleModal} aria-label="Close"></CloseButton>
+      </div>
+      {/* <div ref={node} onClick={handleOutsideClick}>
         <LeftScroll type="button" aria-label="Previous Image"></LeftScroll>
         <ScrollerContainer>
           <ImageContainer>
@@ -188,7 +203,7 @@ const PhotoModal = ({ toggleModal, photos }) => {
         </ScrollerContainer>
         <RightScroll type="button" aria-label="Next Image"></RightScroll>
         <CloseButton onClick={toggleModal} aria-label="Close"></CloseButton>
-      </div>
+      </div> */}
     </Modal>
   );
 };

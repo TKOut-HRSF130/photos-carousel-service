@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-else-return */
 /* eslint-disable consistent-return */
@@ -119,7 +120,7 @@ const MorePhotosText = styled.div`
   }
 `;
 
-const PhotoContainer = ({ photos, handleClick, morePhotos }) => {
+const PhotoContainer = ({ photos, handleClick, morePhotos, sliderPhoto }) => {
   if (photos.length >= 9) {
     return (
       <PhotoGrid>
@@ -158,10 +159,10 @@ const PhotoContainer = ({ photos, handleClick, morePhotos }) => {
   }
   return (
     <Wrapper>{
-      photos.map((photo, key) => {
+      photos.map((photo) => {
         return (
-          <CustomPhoto>
-            <Image key={key} onClick={handleClick} src={`${photo.url_path}`}></Image>
+          <CustomPhoto key={photo.photo_id}>
+            <Image onClick={handleClick} src={`${photo.url_path}`}></Image>
           </CustomPhoto>
         );
       })

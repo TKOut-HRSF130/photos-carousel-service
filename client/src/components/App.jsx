@@ -1,3 +1,4 @@
+/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable linebreak-style */
 /* eslint-disable max-len */
 /* eslint-disable linebreak-style */
@@ -18,6 +19,7 @@ import Header from './Header.jsx';
 import Categorylist from './CategoryList.jsx';
 import PhotoContainer from './PhotoContainer.jsx';
 import PhotoModal from './PhotoModal.jsx';
+// import PhotoSlider from './PhotoSlider.jsx';
 
 const Wrapper = styled.div`
   display: block;
@@ -39,8 +41,8 @@ class App extends React.Component {
       photos: [],
       ableToRender: false,
       showModal: false,
-      photo_id: null,
       morePhotos: 31,
+      sliderPhoto: null,
     };
     this.getRestaurantsPhotos = this.getRestaurantsPhotos.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
@@ -62,7 +64,6 @@ class App extends React.Component {
       },
     })
       .then((response) => {
-        console.log(response.data);
         let id;
         if (window.location.href.split('/')[3] === '') {
           id = 1;
@@ -82,7 +83,7 @@ class App extends React.Component {
       });
   }
 
-  handleAllClick() {
+  handleAllClick(photoId) {
     this.getRestaurantsPhotos();
   }
 
@@ -95,9 +96,7 @@ class App extends React.Component {
   }
 
   handleDrinkCategoryClick() {
-    // console.log('clicked');
     const filteredByCategory = this.state.photos.filter((photo) => photo.category === 'Drink');
-    // console.log(filteredByCategory);
     this.setState({
       photos: filteredByCategory,
       morePhotos: filteredByCategory.length - 9,
@@ -105,18 +104,14 @@ class App extends React.Component {
   }
 
   handleAtmosphereCategoryClick() {
-    // console.log('clicked');
     const filteredByCategory = this.state.photos.filter((photo) => photo.category === 'Atmosphere');
-    // console.log(filteredByCategory);
     this.setState({
       photos: filteredByCategory,
       morePhotos: filteredByCategory.length - 9,
     });
-    // this.setState((prevState) => ({ photos: !prevState.photos }));
   }
 
-  handleImageClick() {
-    // console.log(event.target);
+  handleImageClick(photoId) {
     this.toggleModal();
   }
 
@@ -125,11 +120,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { showModal, photos, morePhotos } = this.state;
+    const { showModal, photos, morePhotos, sliderPhoto } = this.state;
     if (this.state.ableToRender) {
       return (
         <div>
           <div>{showModal ? <PhotoModal showModal={showModal} toggleModal={this.toggleModal} photos={photos} /> : null}</div>
+          {/* <div>{showModal ? <PhotoSlider photos={photos} /> : null}</div> */}
           <Wrapper>
             <Header className="header" photos={this.state.photos} />
             <Categorylist
@@ -145,6 +141,7 @@ class App extends React.Component {
               photos={photos}
               handleClick={this.handleImageClick}
               morePhotos={morePhotos}
+              sliderPhoto={sliderPhoto}
             />
           </Wrapper>
         </div>

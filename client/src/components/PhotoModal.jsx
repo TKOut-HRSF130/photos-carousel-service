@@ -34,29 +34,6 @@ import PhotoSlider from './PhotoSlider.jsx';
 //   padding-bottom: 16px;
 // `;
 
-const ScrollerContainer = styled.div`
-  width: 30%;
-  position: absolute;
-  top: 5%;
-  right: 36%;
-`;
-
-const ImageContainer = styled.div`
-  max-width: 100%;
-  max-height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Image = styled.img`
-  max-width: 100%;
-  max-height: calc(500px - 64px);
-  margin: 0 auto;
-  align-self: center;
-  border-style: none;
-`;
-
 const DescriptionFooter = styled.div`
   position: relative;
   margin: 8px 0 0;
@@ -72,32 +49,6 @@ const FooterText = styled.div`
   margin: 0 8px 0 0;
   display: block;
   line-height: 1.15;
-`;
-
-const LeftScroll = styled.button`
-  cursor: pointer;
-  outline: 0;
-  position: fixed;
-  top: 34%;
-  left: 31%;
-  background-color: transparent;
-  border: none;
-  background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/left_scroll.svg);
-  height: 16px;
-  width: 16px;
-`;
-
-const RightScroll = styled.button`
-  cursor: pointer;
-  outline: 0;
-  position: fixed;
-  top: 34%;
-  right: 33%;
-  background-color: transparent;
-  border: none;
-  background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/right_scroll.svg);
-  height: 16px;
-  width: 16px;
 `;
 
 const CloseButton = styled.button`

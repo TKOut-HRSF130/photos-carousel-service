@@ -120,7 +120,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { showModal, photos, morePhotos, sliderPhoto } = this.state;
+    const {
+      showModal, photos, morePhotos, sliderPhoto,
+    } = this.state;
     if (this.state.ableToRender) {
       return (
         <div>

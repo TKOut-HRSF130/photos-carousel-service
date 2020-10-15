@@ -12,9 +12,11 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, fr);
-  grid-auto-rows: 80px;
+  height: 300px;
+  max-width: 100%;
+  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: repeat(2, 50%);
+  grid-auto-rows: 50%;
   column-gap: 2px;
   grid-gap: 2px;
 `;
@@ -41,6 +43,13 @@ const InnerGrid = styled.div`
   column-gap: 2px;
   justify-items: center;
   align-items: center;
+`;
+
+const CustomPhoto = styled.figure`
+  height: 100%;
+  max-width: 100%;
+  margin: auto;
+  object-fit: cover;
 `;
 
 const Photo = styled.figure`
@@ -111,7 +120,6 @@ const MorePhotosText = styled.div`
 `;
 
 const PhotoContainer = ({ photos, handleClick, morePhotos }) => {
-  console.log(morePhotos);
   if (photos.length >= 9) {
     return (
       <PhotoGrid>
@@ -152,9 +160,9 @@ const PhotoContainer = ({ photos, handleClick, morePhotos }) => {
     <Wrapper>{
       photos.map((photo, key) => {
         return (
-          <Photo>
-            <Image key={photo.photo_id} onClick={handleClick} src={`${photo.url_path}`}></Image>
-          </Photo>
+          <CustomPhoto>
+            <Image key={key} onClick={handleClick} src={`${photo.url_path}`}></Image>
+          </CustomPhoto>
         );
       })
     }

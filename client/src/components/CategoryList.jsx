@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable arrow-body-style */
 /* eslint-disable import/extensions */
@@ -43,14 +44,16 @@ const RemainingButtons = styled(AllButton)`
 }
 `;
 
-const CategoryList = () => {
+const CategoryList = ({
+  photos, handleAllClick, handleFoodClick, handleDrinkClick, handleAtmosphereClick,
+}) => {
   return (
     <FilterByCategoryList id="cateogry-list">
       <StyledList id="list">
-        <AllButton id="all-btn">All</AllButton>
-        <RemainingButtons id="food-btn">Food</RemainingButtons>
-        <RemainingButtons id="drink-btn">Drink</RemainingButtons>
-        <RemainingButtons id="atmosphere-btn">Atmosphere</RemainingButtons>
+        <AllButton id="all-btn" onClick={handleAllClick}>All</AllButton>
+        <RemainingButtons id="food-btn" onClick={handleFoodClick}>Food</RemainingButtons>
+        <RemainingButtons id="drink-btn" onClick={handleDrinkClick}>Drink</RemainingButtons>
+        <RemainingButtons id="atmosphere-btn" onClick={handleAtmosphereClick}>Atmosphere</RemainingButtons>
       </StyledList>
     </FilterByCategoryList>
   );

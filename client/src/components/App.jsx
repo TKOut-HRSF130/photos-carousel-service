@@ -1,3 +1,6 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable linebreak-style */
+/* eslint-disable max-len */
 /* eslint-disable linebreak-style */
 /* eslint-disable radix */
 /* eslint-disable linebreak-style */
@@ -16,6 +19,7 @@ import Header from './Header.jsx';
 import Categorylist from './CategoryList.jsx';
 import PhotoContainer from './PhotoContainer.jsx';
 import PhotoModal from './PhotoModal.jsx';
+// import PhotoSlider from './PhotoSlider.jsx';
 
 const Wrapper = styled.div`
   display: block;
@@ -33,13 +37,19 @@ class App extends React.Component {
     super(props);
     this.state = {
       restaurant_name: '',
-      restaurant_id: Math.floor(Math.random() * 100),
+      restaurant_id: 1,
       photos: [],
       ableToRender: false,
       showModal: false,
+      morePhotos: 31,
+      sliderPhoto: null,
     };
     this.getRestaurantsPhotos = this.getRestaurantsPhotos.bind(this);
     this.handleImageClick = this.handleImageClick.bind(this);
+    this.handleAllClick = this.handleAllClick.bind(this);
+    this.handleFoodCategoryClick = this.handleFoodCategoryClick.bind(this);
+    this.handleDrinkCategoryClick = this.handleDrinkCategoryClick.bind(this);
+    this.handleAtmosphereCategoryClick = this.handleAtmosphereCategoryClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
 
@@ -65,6 +75,7 @@ class App extends React.Component {
           restaurant_name: response.data[0].name,
           restaurant_id: id,
           photos: response.data[0].photos,
+          morePhotos: 31,
         });
       })
       .catch((err) => {
@@ -72,7 +83,35 @@ class App extends React.Component {
       });
   }
 
-  handleImageClick() {
+  handleAllClick(photoId) {
+    this.getRestaurantsPhotos();
+  }
+
+  handleFoodCategoryClick() {
+    const filteredByCategory = this.state.photos.filter((photo) => photo.category === 'Food');
+    this.setState({
+      photos: filteredByCategory,
+      morePhotos: filteredByCategory.length - 9,
+    });
+  }
+
+  handleDrinkCategoryClick() {
+    const filteredByCategory = this.state.photos.filter((photo) => photo.category === 'Drink');
+    this.setState({
+      photos: filteredByCategory,
+      morePhotos: filteredByCategory.length - 9,
+    });
+  }
+
+  handleAtmosphereCategoryClick() {
+    const filteredByCategory = this.state.photos.filter((photo) => photo.category === 'Atmosphere');
+    this.setState({
+      photos: filteredByCategory,
+      morePhotos: filteredByCategory.length - 9,
+    });
+  }
+
+  handleImageClick(photoId) {
     this.toggleModal();
   }
 
@@ -81,24 +120,31 @@ class App extends React.Component {
   }
 
   render() {
-    const { showModal, photos } = this.state;
+    const { showModal, photos, morePhotos, sliderPhoto } = this.state;
     if (this.state.ableToRender) {
       return (
-        <Wrapper>
-          <Header className="header" photos={this.state.photos} />
-          <Categorylist className="categories" />
-          <PhotoContainer
-            className="container"
-            photos={photos}
-            handleClick={this.handleImageClick}
-          />
-          <PhotoModal
-            showModal={showModal}
-            toggleModal={this.toggleModal}
-            photos={photos}
-          >
-          </PhotoModal>
-        </Wrapper>
+        <div>
+          <div>{showModal ? <PhotoModal showModal={showModal} toggleModal={this.toggleModal} photos={photos} /> : null}</div>
+          {/* <div>{showModal ? <PhotoSlider photos={photos} /> : null}</div> */}
+          <Wrapper>
+            <Header className="header" photos={this.state.photos} />
+            <Categorylist
+              className="categories"
+              photos={photos}
+              handleAllClick={this.handleAllClick}
+              handleFoodClick={this.handleFoodCategoryClick}
+              handleDrinkClick={this.handleDrinkCategoryClick}
+              handleAtmosphereClick={this.handleAtmosphereCategoryClick}
+            />
+            <PhotoContainer
+              className="container"
+              photos={photos}
+              handleClick={this.handleImageClick}
+              morePhotos={morePhotos}
+              sliderPhoto={sliderPhoto}
+            />
+          </Wrapper>
+        </div>
       );
     }
     return (

@@ -44,7 +44,9 @@ const RemainingButtons = styled(AllButton)`
 }
 `;
 
-const CategoryList = ({ photos, handleAllClick, handleFoodClick, handleDrinkClick, handleAtmosphereClick }) => {
+const CategoryList = ({
+  photos, handleAllClick, handleFoodClick, handleDrinkClick, handleAtmosphereClick,
+}) => {
   return (
     <FilterByCategoryList id="cateogry-list">
       <StyledList id="list">

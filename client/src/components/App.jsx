@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable linebreak-style */
 /* eslint-disable max-len */
@@ -37,7 +38,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       restaurant_name: '',
-      restaurant_id: 1,
+      restaurant_id: null,
       photos: [],
       ableToRender: false,
       showModal: false,
@@ -54,26 +55,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getRestaurantsPhotos();
+    const id = Math.floor(Math.random() * 100);
+    this.setState({
+      restaurant_id: id,
+    }, () => this.getRestaurantsPhotos());
   }
 
   getRestaurantsPhotos() {
-    axios.get(`api/restaurants/photos/${this.state.restaurant_id}`, {
-      params: {
-        restaurant_id: this.state.restaurant_id,
-      },
-    })
+    axios.get(`api/restaurants/photos/${this.state.restaurant_id}`)
       .then((response) => {
-        let id;
-        if (window.location.href.split('/')[3] === '') {
-          id = 1;
-        } else {
-          id = parseInt(window.location.href.split('?')[1]);
-        }
         this.setState({
           ableToRender: true,
           restaurant_name: response.data[0].name,
-          restaurant_id: id,
           photos: response.data[0].photos,
           morePhotos: 31,
         });
@@ -83,7 +76,7 @@ class App extends React.Component {
       });
   }
 
-  handleAllClick(photoId) {
+  handleAllClick() {
     this.getRestaurantsPhotos();
   }
 

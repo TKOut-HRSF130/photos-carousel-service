@@ -24,31 +24,31 @@ const Slide = styled.div`
   overflow: hidden;
 `;
 
-const LeftButton = styled.button`
-  cursor: pointer;
-  outline: 0;
-  position: fixed;
-  top: 34%;
-  left: 29%;
-  background-color: transparent;
-  border: none;
-  background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/left_scroll.svg);
-  height: 16px;
-  width: 16px;
-`;
+// const LeftButton = styled.button`
+//   cursor: pointer;
+//   outline: 0;
+//   position: fixed;
+//   top: 34%;
+//   left: 29%;
+//   background-color: transparent;
+//   border: none;
+//   background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/left_scroll.svg);
+//   height: 16px;
+//   width: 16px;
+// `;
 
-const RightButton = styled.button`
-  cursor: pointer;
-  outline: 0;
-  position: fixed;
-  top: 34%;
-  right: 33.5%;
-  background-color: transparent;
-  border: none;
-  background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/right_scroll.svg);
-  height: 16px;
-  width: 16px;
-`;
+// const RightButton = styled.button`
+//   cursor: pointer;
+//   outline: 0;
+//   position: fixed;
+//   top: 34%;
+//   right: 33.5%;
+//   background-color: transparent;
+//   border: none;
+//   background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/right_scroll.svg);
+//   height: 16px;
+//   width: 16px;
+// `;
 
 const Image = styled.img`
   max-width: 100%;
@@ -58,14 +58,7 @@ const Image = styled.img`
   border-style: none;
 `;
 
-const PhotoSlider = ({ photos }) => {
-  const [x, setX] = useState(0);
-  const goLeft = () => {
-    return x === 0 ? setX(-100 * (photos.length - 1)) : setX(x + 100);
-  };
-  const goRight = () => {
-    return x === -100 * (photos.length - 1) ? setX(0) : setX(x - 100);
-  };
+const PhotoSlider = ({ photos, x }) => {
   return (
     <Slider>
       {
@@ -77,8 +70,6 @@ const PhotoSlider = ({ photos }) => {
           );
         })
       }
-      <LeftButton onClick={goLeft} />
-      <RightButton onClick={goRight} />
     </Slider>
   );
 };

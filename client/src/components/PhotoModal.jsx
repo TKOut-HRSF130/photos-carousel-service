@@ -4,7 +4,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/self-closing-comp */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import PhotoSlider from './PhotoSlider.jsx';
@@ -70,6 +70,32 @@ const CloseButton = styled.button`
   }
 `;
 
+const LeftButton = styled.button`
+  cursor: pointer;
+  outline: 0;
+  position: fixed;
+  top: 34%;
+  left: 29%;
+  background-color: transparent;
+  border: none;
+  background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/left_scroll.svg);
+  height: 16px;
+  width: 16px;
+`;
+
+const RightButton = styled.button`
+  cursor: pointer;
+  outline: 0;
+  position: fixed;
+  top: 34%;
+  right: 33.5%;
+  background-color: transparent;
+  border: none;
+  background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/right_scroll.svg);
+  height: 16px;
+  width: 16px;
+`;
+
 const PhotoModal = ({ toggleModal, photos }) => {
   const [modalIsOpen, setIsOpen] = React.useState(true);
   const closeModal = () => {
@@ -91,6 +117,14 @@ const PhotoModal = ({ toggleModal, photos }) => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
+
+  const [x, setX] = useState(0);
+  const goLeft = () => {
+    return x === 0 ? setX(-100 * (photos.length - 1)) : setX(x + 100);
+  };
+  const goRight = () => {
+    return x === -100 * (photos.length - 1) ? setX(0) : setX(x - 100);
+  };
 
   const dateChange = (date) => {
     const newDate = new Date(date);
@@ -125,7 +159,11 @@ const PhotoModal = ({ toggleModal, photos }) => {
       }}
     >
       <div ref={node} onClick={handleOutsideClick}>
-        <PhotoSlider photos={photos}>
+        <LeftButton onClick={goLeft} />
+        <PhotoSlider
+          photos={photos}
+          x={x}
+        >
           <DescriptionFooter>
             <div>
               <FooterText>{`${photos[3].description}`}</FooterText>
@@ -135,6 +173,7 @@ const PhotoModal = ({ toggleModal, photos }) => {
             </div>
           </DescriptionFooter>
         </PhotoSlider>
+        <RightButton onClick={goRight} />
         <CloseButton onClick={toggleModal} aria-label="Close"></CloseButton>
       </div>
       {/* <div ref={node} onClick={handleOutsideClick}>

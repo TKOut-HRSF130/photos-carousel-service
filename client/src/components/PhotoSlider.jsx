@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Slider = styled.div`

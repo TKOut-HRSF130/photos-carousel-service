@@ -24,32 +24,6 @@ const Slide = styled.div`
   overflow: hidden;
 `;
 
-// const LeftButton = styled.button`
-//   cursor: pointer;
-//   outline: 0;
-//   position: fixed;
-//   top: 34%;
-//   left: 29%;
-//   background-color: transparent;
-//   border: none;
-//   background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/left_scroll.svg);
-//   height: 16px;
-//   width: 16px;
-// `;
-
-// const RightButton = styled.button`
-//   cursor: pointer;
-//   outline: 0;
-//   position: fixed;
-//   top: 34%;
-//   right: 33.5%;
-//   background-color: transparent;
-//   border: none;
-//   background: url(https://hrsf130-tkout-photo-gallery.s3.us-east-2.amazonaws.com/Icons/right_scroll.svg);
-//   height: 16px;
-//   width: 16px;
-// `;
-
 const Image = styled.img`
   max-width: 100%;
   max-height: calc(500px - 64px);

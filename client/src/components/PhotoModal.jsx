@@ -9,31 +9,6 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 import PhotoSlider from './PhotoSlider.jsx';
 
-// const GalleryOverlay = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background: rgba(0, 0, 0, .9);
-//   display: block;
-// `;
-
-// const GalleryPopup = styled.div`
-//   position: absolute;
-//   width: 30rem;
-//   right: 62px;
-//   left: 0;
-//   top: 45px;
-//   margin: auto;
-//   border-color: rgba(0,0,0,.0784314);
-//   border-style: solid;
-//   border-width: .67px;
-//   border-radius: 3px;
-//   background-color: transparent;
-//   padding-bottom: 16px;
-// `;
-
 const DescriptionFooter = styled.div`
   position: relative;
   margin: 8px 0 0;
@@ -176,24 +151,6 @@ const PhotoModal = ({ toggleModal, photos }) => {
         <RightButton onClick={goRight} />
         <CloseButton onClick={toggleModal} aria-label="Close"></CloseButton>
       </div>
-      {/* <div ref={node} onClick={handleOutsideClick}>
-        <LeftScroll type="button" aria-label="Previous Image"></LeftScroll>
-        <ScrollerContainer>
-          <ImageContainer>
-            <Image src={photos[0].url_path}></Image>
-          </ImageContainer>
-          <DescriptionFooter>
-            <div>
-              <FooterText>{`${photos[3].description}`}</FooterText>
-              <FooterText>
-                {`Dined On ${dateChange(photos[3].date)}`}
-              </FooterText>
-            </div>
-          </DescriptionFooter>
-        </ScrollerContainer>
-        <RightScroll type="button" aria-label="Next Image"></RightScroll>
-        <CloseButton onClick={toggleModal} aria-label="Close"></CloseButton>
-      </div> */}
     </Modal>
   );
 };
